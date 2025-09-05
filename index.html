@@ -33,6 +33,7 @@
             position: absolute;
             background: white;
             animation: twinkle 4s infinite alternate;
+            opacity: 0.5; /* Default visible state */
         }
 
         .star.small {
@@ -561,8 +562,15 @@
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
                 
+                // Set initial opacity to ensure stars are visible from start
+                const initialOpacity = 0.2 + (Math.random() * 0.6); // Random between 0.2 and 0.8
+                star.style.opacity = initialOpacity;
+                
                 // Distribute animation delays evenly for consistent twinkling
                 star.style.animationDelay = (i / numStars) * 8 + 's';
+                
+                // Ensure animation starts immediately with a slight random offset
+                star.style.animationDelay = Math.random() * 2 + 's';
                 
                 starfield.appendChild(star);
             }
