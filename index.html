@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ralph Client Survey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --hero-color: #EB008B;
+            --cyan-color: #31BDBF;
+            --orange-color: #F16524;
+            --green-color: #44B658;
+            --yellow-color: #FBC000;
+        }
+
+        .brand-gradient {
+            background: linear-gradient(90deg, var(--hero-color) 0%, var(--cyan-color) 100%);
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .form-input:focus {
+            border-color: var(--cyan-color);
+            box-shadow: 0 0 0 3px rgba(49, 189, 191, 0.1);
+        }
+
+        .range-slider {
+            appearance: none;
+            height: 8px;
+            background: linear-gradient(to right, var(--hero-color) 0%, var(--cyan-color) 100%);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--hero-color);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .range-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--hero-color);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .brand-colors {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .brand-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        .submit-btn {
+            background-color: var(--hero-color);
+            color: white;
+            box-shadow: 0 4px 6px rgba(235, 0, 139, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--cyan-color);
+            transform: scale(1.05);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .survey-container {
+            max-width: 32rem;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            border-top: 5px solid var(--hero-color);
+            border-bottom: 5px solid var(--hero-color);
+        }
+
+        @media (max-width: 640px) {
+            .survey-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="survey-container">
+        <div class="logo-container">
+            <img 
+                src="surveylogo.png" 
+                alt="Ralph Logo" 
+                class="max-h-32 mx-auto object-contain mb-4"
+                id="logo"
+            />
+            <h1 class="text-3xl font-semibold mb-2" style="color: var(--hero-color);">
+                Client Feedback Survey
+            </h1>
+            <p class="text-gray-600">We value your honest feedback</p>
+        </div>
+        
+        <form id="surveyForm" class="space-y-6">
+            <!-- Best Thing About Ralph -->
+            <div>
+                <label class="block text-sm font-medium mb-2" style="color: var(--hero-color);">
+                    What's the best thing about Ralph? *
+                </label>
+                <textarea
+                    name="bestThing"
+                    class="w-full rounded-md border-gray-300 form-input p-3"
+                    rows="3"
+                    required
+                    placeholder="Tell us what you love most about working with Ralph..."
+                ></textarea>
+            </div>
+
+            <!-- Worst Thing About Ralph -->
+            <div>
+                <label class="block text-sm font-medium mb-2" style="color: var(--hero-color);">
+                    What's the worst thing about Ralph?
+                </label>
+                <textarea
+                    name="worstThing"
+                    class="w-full rounded-md border-gray-300 form-input p-3"
+                    rows="3"
+                    placeholder="Help us improve by sharing areas where we can do better..."
+                ></textarea>
+            </div>
+
+            <!-- Recommendation -->
+            <div>
+                <label class="block text-sm font-medium mb-2" style="color: var(--hero-color);">
+                    Would you recommend Ralph to your colleagues? *
+                </label>
+                <select
+                    name="recommendation"
+                    class="w-full rounded-md border-gray-300 form-input p-3"
+                    required
+                >
+                    <option value="">Select an option</option>
+                    <option value="Definitely">Definitely</option>
+                    <option value="Probably">Probably</option>
+                    <option value="Maybe">Maybe</option>
+                    <option value="Probably Not">Probably Not</option>
+                    <option value="Definitely Not">Definitely Not</option>
+                </select>
+            </div>
+
+            <!-- Rating -->
+            <div>
+                <label class="block text-sm font-medium mb-2" style="color: var(--hero-color);">
+                    Overall, how would you rate Ralph on a scale of 1 to 10? *
+                </label>
+                <input
+                    type="range"
+                    name="rating"
+                    min="1"
+                    max="10"
+                    value="5"
+                    class="w-full range-slider"
+                    id="ratingSlider"
+                />
+                <div class="flex justify-between text-xs text-gray-600 mt-1">
+                    <span>1 (Terrible)</span>
+                    <span>10 (Amazing)</span>
+                </div>
+                <div class="text-center font-bold text-lg mt-2" style="color: var(--hero-color);" id="ratingValue">
+                    5
+                </div>
+            </div>
+
+            <!-- Change One Thing -->
+            <div>
+                <label class="block text-sm font-medium mb-2" style="color: var(--hero-color);">
+                    If you could change one thing about Ralph, what would it be?
+                </label>
+                <textarea
+                    name="changeOneThing"
+                    class="w-full rounded-md border-gray-300 form-input p-3"
+                    rows="3"
+                    placeholder="What's the one change that would make the biggest difference?"
+                ></textarea>
+            </div>
+
+            <!-- New Services -->
+            <div>
+                <label class="block text-sm font-medium mb-2" style="color: var(--hero-color);">
+                    What new service(s) would you most like to see from Ralph?
+                </label>
+                <textarea
+                    name="newServices"
+                    class="w-full rounded-md border-gray-300 form-input p-3"
+                    rows="3"
+                    placeholder="What services would add value to your projects?"
+                ></textarea>
+            </div>
+
+            <!-- Upcoming Projects -->
+            <div>
+                <label class="block text-sm font-medium mb-2" style="color: var(--hero-color);">
+                    Do you have any upcoming projects that you would like Ralph to partner on?
+                </label>
+                <textarea
+                    name="upcomingProjects"
+                    class="w-full rounded-md border-gray-300 form-input p-3"
+                    rows="3"
+                    placeholder="Tell us about potential collaboration opportunities..."
+                ></textarea>
+            </div>
+
+            <!-- First Choice -->
+            <div>
+                <label class="block text-sm font-medium mb-2" style="color: var(--hero-color);">
+                    What could Ralph do to make us your first choice every time?
+                </label>
+                <textarea
+                    name="firstChoice"
+                    class="w-full rounded-md border-gray-300 form-input p-3"
+                    rows="3"
+                    placeholder="What would make Ralph irresistible for your next project?"
+                ></textarea>
+            </div>
+
+            <div class="text-center mt-8">
+                <button 
+                    type="submit" 
+                    class="px-8 py-3 rounded-md font-semibold submit-btn hover-scale"
+                >
+                    Submit Survey
+                </button>
+            </div>
+        </form>
+
+        <!-- Brand Colors -->
+        <div class="brand-colors">
+            <div class="brand-dot" style="background-color: var(--hero-color);"></div>
+            <div class="brand-dot" style="background-color: var(--cyan-color);"></div>
+            <div class="brand-dot" style="background-color: var(--orange-color);"></div>
+            <div class="brand-dot" style="background-color: var(--green-color);"></div>
+            <div class="brand-dot" style="background-color: var(--yellow-color);"></div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-lg shadow-xl max-w-md mx-4">
+            <div class="text-center">
+                <div class="text-6xl mb-4">🎉</div>
+                <h3 class="text-xl font-semibold mb-4" style="color: var(--hero-color);">
+                    Thank You!
+                </h3>
+                <p class="text-gray-600 mb-6">
+                    Your feedback has been submitted successfully. We truly appreciate your time and insights!
+                </p>
+                <button 
+                    onclick="closeModal()" 
+                    class="px-6 py-2 rounded-md submit-btn"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update rating display
+        const ratingSlider = document.getElementById('ratingSlider');
+        const ratingValue = document.getElementById('ratingValue');
+        
+        ratingSlider.addEventListener('input', function() {
+            ratingValue.textContent = this.value;
+        });
+
+        // Google Sheets Integration
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwVopBinNMScmpt8ZefWSA89Sb4JEwZo3FU6fCoKZChyAPqzAx9Kie6KzE_2Wi8DX-vwA/exec';
+
+        document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Add timestamp
+            data.timestamp = new Date().toISOString();
+            
+            try {
+                // Show loading state
+                const submitBtn = document.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+
+                // Submit to Google Sheets
+                const response = await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Show success modal
+                showSuccessModal();
+                
+                // Reset form
+                this.reset();
+                ratingValue.textContent = '5';
+                
+                // Restore button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Oops! There was a problem submitting the survey. Please try again.');
+                
+                // Restore button
+                const submitBtn = document.querySelector('button[type="submit"]');
+                submitBtn.textContent = 'Submit Survey';
+                submitBtn.disabled = false;
+            }
+        });
+
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.remove('hidden');
+            document.getElementById('successModal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.getElementById('successModal').classList.remove('flex');
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Close modal on background click
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
