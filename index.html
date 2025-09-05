@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ralph Client Survey</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Mono:wght@400;700&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --hero-color: #EB008B;
@@ -137,6 +140,64 @@
             margin-bottom: 1.5rem;
         }
 
+        .logo-header {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--hero-color);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 8px rgba(235, 0, 139, 0.3);
+        }
+
+        h1 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        label {
+            font-family: 'Orbitron', monospace;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        input, textarea, select, button {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            font-size: 1.1em;
+        }
+
+        input, textarea, select {
+            background-color: rgba(235, 0, 139, 0.05) !important;
+            border: 1px solid rgba(235, 0, 139, 0.2) !important;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            background-color: rgba(235, 0, 139, 0.08) !important;
+            border-color: var(--hero-color) !important;
+            outline: none !important;
+            box-shadow: 0 0 0 3px rgba(235, 0, 139, 0.1) !important;
+        }
+
+        .submit-btn {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        option {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .subtitle {
+            font-family: 'Space Mono', monospace;
+            font-style: italic;
+            letter-spacing: 0.05em;
+        }
+
         .survey-container {
             max-width: 32rem;
             margin: 2rem auto;
@@ -147,6 +208,7 @@
             position: relative;
             z-index: 1;
             animation: colorGlow 12s ease-in-out infinite;
+            font-family: 'Orbitron', monospace;
         }
 
         @keyframes colorGlow {
@@ -207,16 +269,18 @@
     <div class="starfield" id="starfield"></div>
     <div class="survey-container">
         <div class="logo-container">
-            <img 
-                src="surveylogo.png" 
-                alt="Ralph Logo" 
-                class="max-h-32 mx-auto object-contain mb-4"
-                id="logo"
-            />
+            <div class="logo-header">
+                <img 
+                    src="surveylogo.png" 
+                    alt="Ralph Logo" 
+                    class="max-h-32 mx-auto object-contain"
+                    id="logo"
+                />
+            </div>
             <h1 class="text-3xl font-semibold mb-2" style="color: var(--hero-color);">
                 Client Feedback Survey
             </h1>
-            <p class="text-gray-600">Help us level up Ralph's superpowers!</p>
+            <p class="text-gray-600 subtitle">Help us level up Ralph's superpowers!</p>
         </div>
         
         <form id="surveyForm" class="space-y-6">
