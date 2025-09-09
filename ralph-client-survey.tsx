@@ -103,51 +103,51 @@ export default function RalphClientSurvey() {
         {[
           { 
             name: 'bestThing', 
-            label: "What's the best thing about Ralph?",
+            label: "What aspects of working with Ralph have been most valuable to your business?",
             required: true
           },
           { 
             name: 'worstThing', 
-            label: "What's the worst thing about Ralph?",
+            label: "What areas of our service could be improved?",
             required: false
           },
           { 
             name: 'recommendation', 
-            label: "Would you recommend Ralph to your colleagues?",
+            label: "How likely are you to recommend Ralph to a colleague or business partner?",
             type: 'select',
             options: [
-              'Definitely',
-              'Probably',
-              'Maybe',
-              'Probably Not',
-              'Definitely Not'
+              'Very Likely',
+              'Likely',
+              'Neutral',
+              'Unlikely',
+              'Very Unlikely'
             ],
             required: true
           },
           { 
             name: 'rating', 
-            label: "Overall, how would you rate Ralph on a scale of 1 to 10?",
+            label: "Please rate your overall satisfaction with Ralph's services (1-10):",
             type: 'range',
             required: true
           },
           { 
             name: 'changeOneThing', 
-            label: "If you could change one thing about Ralph, what would it be?",
+            label: "What is the single most important improvement we could make to our services?",
             required: false
           },
           { 
             name: 'newServices', 
-            label: "What new service(s) would you most like to see from Ralph?",
+            label: "Are there any additional services or capabilities you would like Ralph to offer?",
             required: false
           },
           { 
             name: 'upcomingProjects', 
-            label: "Do you have any upcoming projects that you would like Ralph to partner on?",
+            label: "Do you have any upcoming projects where Ralph could provide value? Please describe:",
             required: false
           },
           { 
             name: 'firstChoice', 
-            label: "What could Ralph do to make us your first choice every time?",
+            label: "What factors would make Ralph your preferred partner for all relevant projects?",
             required: false
           }
         ].map((question, index) => (
